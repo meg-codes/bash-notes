@@ -129,7 +129,7 @@ drwxr-xr-x   2 bhicks cses     31 Oct 27 11:17 .vim
 ``` 
 
 This looks like a lot of obtuse information, but it tells me 1) all the files, including
-'hidden' dotted files like my .bashrc that helps set initial variables for a Bash sessioni 2) shows size in KB (add -alh to get a more useful set of values there) and 3) the 
+'hidden' dotted files like my .bashrc that helps set initial variables for a Bash session 2) shows size in B (add -alh to get a more useful set of values there) and 3) the 
 permissions of each file, but that's a topic for later.
 
 I still down't know what the absolute file path for the directory is. In this case, 

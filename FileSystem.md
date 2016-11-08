@@ -1,9 +1,8 @@
 # Command Line Cheat Sheet
 
 ## What this is document and isn't 
-This document is by no means even approaching a comprehensive guide to all
-the useful features of the Bash Commandline. It does, however, try to 
-collect some commands and their syntax in a useful format.
+This document is a basic guide to getting around the file system of a POSIX (Unix, Linux,
+MacOS based system). It is not comprehensive.
 
 It is also geared primarily to POSIX based systems (though Windows 10 users
 should note that an Ubuntu command line now exists for it, too!).

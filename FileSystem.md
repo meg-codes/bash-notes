@@ -57,7 +57,7 @@ DESCRIPTION
 Most entries describe the command's basic function, give a listing of its operands
 (usually prefixed by -- or -) and then what it takes as an input.
 
-So from that, we learn that ls lists the contents of a directory.
+So from that, we learn that `ls` lists the contents of a directory.
 
 ## Getting around the file system
 
@@ -132,7 +132,7 @@ This looks like a lot of obtuse information, but it tells me 1) all the files, i
 'hidden' dotted files like my .bashrc that helps set initial variables for a Bash session 2) shows size in B (add -alh to get a more useful set of values there) and 3) the 
 permissions of each file, but that's a topic for later.
 
-I still down't know what the absolute file path for the directory is. In this case, 
+I still don't know what the absolute file path for the directory is. In this case, 
 `pwd` is the ticket. It prints the working directory to the console.
 
 ```
@@ -144,5 +144,15 @@ Now I know that ~ is a shorthand way of writing /home/bhicks.
 
 ## cd
 
-I know where I am. Now how do I get where I'm going?
+I know where I am. Now how do I get where I'm going? `cd` is the command to change the working directory in a POSIX environment.
 
+The basic syntax is `cd <new directory>`. But here we can get into what those . and .. at the top of a directory listing mean.
+
+. marks the current directory and its permissions.
+.. marks the directory above.
+
+You can use these as a quick shorthand in many cases.
+
+If I were in `/home/bhicks` then `cd ..` would move me to `/home`. You can keep doing this, or even chain them. From `/home/bhicks` `cd ../..` would move me to ``/``.
+
+You can also use `cd` to move to an absolute or relative path. An absolute path is a path written from root down (`/var/www/public_html/images/cat_gifs`). A relative path is written from the current directory (if your working dir was `/var/www`, then `cd public_html/images/cat_gifs` would get you to the same directory as the absolute path above).

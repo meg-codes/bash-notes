@@ -146,10 +146,10 @@ Now I know that ~ is a shorthand way of writing /home/bhicks.
 
 I know where I am. Now how do I get where I'm going? `cd` is the command to change the working directory in a POSIX environment.
 
-The basic syntax is `cd <new directory>`. But here we can get into what those . and .. at the top of a directory listing mean.
+The basic syntax is `cd <new directory>`. But here we can get into what those `.` and `..` at the top of a directory listing mean.
 
-. marks the current directory and its permissions.
-.. marks the directory above.
+`.` marks the current directory and its permissions.
+`..` marks the directory above.
 
 You can use these as a quick shorthand in many cases.
 

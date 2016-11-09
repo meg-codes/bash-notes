@@ -156,3 +156,5 @@ You can use these as a quick shorthand in many cases.
 If I were in `/home/bhicks` then `cd ..` would move me to `/home`. You can keep doing this, or even chain them. From `/home/bhicks` `cd ../..` would move me to ``/``.
 
 You can also use `cd` to move to an absolute or relative path. An absolute path is a path written from root down (`/var/www/public_html/images/cat_gifs`). A relative path is written from the current directory (if your working dir was `/var/www`, then `cd public_html/images/cat_gifs` would get you to the same directory as the absolute path above).
+
+It's worth noting that this distinction applies to any command where you supply a file name for execution. `cp /home/bhicks/interlac_dict.txt /home/fnord/` and `cp interlac_dict.txt /home/fnord` would work equally well--if my working directory were `/home/bhicks`.

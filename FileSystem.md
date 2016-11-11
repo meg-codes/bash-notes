@@ -31,7 +31,7 @@ man <command>
 It will give a printout of a particular system command's usage 
 (or really any program that has manual documentation) to the terminal window 
 
-A shortened version of the output is here:
+A shortened version of the output of `man ls` is here:
 ```
 LS(1)                     BSD General Commands Manual                    LS(1)
 

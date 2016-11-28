@@ -81,7 +81,7 @@ The $ is just shell speak for 'Ready to start a new command'
 Let's look around, shall we? If you see a command here, run its 'man' to get a
 full listing. It's habit building. In a good way.
 
-### ls and pwd
+### Looking around - `ls` and `pwd`
 `ls` gives you the structure of a directory and its files. 
 
 Without any arguments, it will return any non-hidden files in your current directory.
@@ -142,7 +142,7 @@ I still don't know what the absolute file path for the directory is. In this cas
 
 Now I know that ~ is a shorthand way of writing /home/bhicks.
 
-## cd
+## You are now free to move about the file system - `cd`
 
 I know where I am. Now how do I get where I'm going? `cd` is the command to change the working directory in a POSIX environment.
 
@@ -158,3 +158,33 @@ If I were in `/home/bhicks` then `cd ..` would move me to `/home`. You can keep 
 You can also use `cd` to move to an absolute or relative path. An absolute path is a path written from root down (`/var/www/public_html/images/cat_gifs`). A relative path is written from the current directory (if your working dir was `/var/www`, then `cd public_html/images/cat_gifs` would get you to the same directory as the absolute path above).
 
 It's worth noting that this distinction applies to any command where you supply a file name for execution. `cp /home/bhicks/interlac_dict.txt /home/fnord/` and `cp interlac_dict.txt /home/fnord` would work equally well--if my working directory were `/home/bhicks`.
+
+## Making a new folder - `mkdir`
+
+The aptly named `mkdir` will make a directory. The syntax is `mkdir <directory name>`. It has a few quirks.
+
+Let's say I'm in my home directory and want to make a folder and a folder beneath it.
+
+```
+~ $mkdir work
+~ $mkdir work/Mon
+```
+
+Great! The folders `~/work` and `~/work/Mon` now both exist.
+
+So, you might think, 'I bet I can just do `mkdir work/Mon`!` to save a step. But you'll get this if you'restarting from scratch.
+
+```
+~ $mkdir work/Mon
+mkdir: work: No such file or directory
+```
+
+Sounds like a Monday. In any case, `mkdir` can't make the subdirectory because the directory doesn't exist.  However: `mkdir -p work/Mon` works like a charm. The `-p` flag creates subdirectories recursively.
+
+You can combine this with the `{}` braces selector to do some neat tricks. `mkdir -p work/{Mon,Tues,Wed,Thurs,Fri}` will create `work/` and then the named subdirectories below, all in one shot.
+
+ 
+
+
+ 
+

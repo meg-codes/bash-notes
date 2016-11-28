@@ -7,3 +7,5 @@ Hopefully it can be a helpful resource, though at the moment it is primarily inc
 [Basic file system directory commands - ls, pwd, cd, mkdir](Directories.md)
 
 [Copying and (Re)Moving files - cp, mv, rm](Files.md)
+
+[Input, Output, and Piping - >, \<, |](Input.md)

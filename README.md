@@ -5,4 +5,5 @@ Hopefully it can be a helpful resource, though at the moment it is primarily inc
 
 ## Guides
 [Basic file system directory commands - ls, pwd, cd](Directories.md)
+
 [Copying and (Re)Moving files - cp, mv, rm](Files.md)

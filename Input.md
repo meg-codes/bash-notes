@@ -61,7 +61,7 @@ a round-about way of saying 'toss the whole thing, I don't care'.
 The most useful tool you'll encounter is the `|`. This pipes the standard output of one program to another.
 
 Why would I want to do this? An excellent example is the `find` command. Without going into its complex
-(and implmentation specific) syntax, `find .` would start in your current directory and recursively list every single file (throwing errors for files you don't have permission to read).
+(and implementation specific) syntax, `find .` would start in your current directory and recursively list every single file (throwing errors for files you don't have permission to read).
 
 Not hugely useful as a search, but you can then pull out the handy-dandy tool of the Unix world: `grep`.
 
@@ -72,7 +72,7 @@ I do a lot of work on a Roman author named Pliny. Let's say I totally forgot thi
 
 I'd `cd ~`, then run `find . | grep pliny`. By default, grep returns any line where it finds a match for the regular expression (long story, to be explained later) I feed it.
 
-Now, if I wanted to keep this list: `find . | grep pliny`.
+Now, if I wanted to keep this list: `find . | grep pliny > search.txt`.
 
 
  

@@ -55,4 +55,82 @@ A few important flags:
 * `cp -r` - This sets `cp` to copy recursively, i.e. it lets you copy an entire directory and all the subdirectories below it.
  - For example: `cp -r foo/ bar/` would copy the entire directory `foo/` and all its subdirectories and files to `bar/` relative to your working directory.
 * `cp -rp` or `cp -a`:
- - Similar commands, these are recursive AND ensure that the files are copied with the same owner and permissions. `cp -a` combines all of these and preserves some Linux security features. 
+ - Similar commands, these are recursive AND ensure that the files are copied with the same owner and permissions. `cp -a` combines all of these and preserves some Linux security features.
+
+## Moving a file - `mv`
+
+`mv` moves a file, which in UNIX-land is also how you rename a file.
+
+The basic syntax is `mv <source> <destination>`, in any format, relative or absolute that is valid.
+
+`mv` is incredibly powerful and if you're moving around a lot of files will let you pull out some
+really annoying problems. Once you're used to it, it's also much quicker than lassoing files with a mouse.
+
+It can also end up sending files willy-nilly. Most operating system files are protected and require superuser privileges to edit or move, so unless you use `sudo`, you're unlikely to bring down your system. You
+just might move some files somewhere annoying, however, so be careful.
+
+The wildcard selector `*` and braces `{}` are both supported, too, huzzah!
+
+Suppose you had a tremendously messy directory and needed to get all the text files out and put them elsewhere.
+
+```
+~/junkdrawer $pwd
+/Users/benjaminhicks/junkdrawer
+~/junkdrawer $ls -al
+total 0
+drwxr-xr-x   19 benjaminhicks  staff   646 Nov 28 12:56 .
+drwxr-xr-x+ 131 benjaminhicks  staff  4454 Nov 28 12:54 ..
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 1.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 1.useful.txt
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 10.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 11.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 12.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 2.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 2.useful.txt
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 3.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 3.useful.txt
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 4.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 4.useful.txt
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 5.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 5.useful.txt
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 6.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 7.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 8.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 9.spam
+~/junkdrawer $mkdir useful_text
+~/junkdrawer $mv *.txt useful_text/
+~/junkdrawer $ls -al
+total 0
+drwxr-xr-x   15 benjaminhicks  staff   510 Nov 28 12:57 .
+drwxr-xr-x+ 131 benjaminhicks  staff  4454 Nov 28 12:54 ..
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 1.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 10.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 11.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 12.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 2.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 3.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 4.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 5.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 6.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 7.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 8.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 9.spam
+drwxr-xr-x    7 benjaminhicks  staff   238 Nov 28 12:57 useful_text
+~/junkdrawer $ls -al useful_text/
+total 0
+drwxr-xr-x   7 benjaminhicks  staff  238 Nov 28 12:57 .
+drwxr-xr-x  15 benjaminhicks  staff  510 Nov 28 12:57 ..
+-rw-r--r--   1 benjaminhicks  staff    0 Nov 28 12:56 1.useful.txt
+-rw-r--r--   1 benjaminhicks  staff    0 Nov 28 12:56 2.useful.txt
+-rw-r--r--   1 benjaminhicks  staff    0 Nov 28 12:56 3.useful.txt
+-rw-r--r--   1 benjaminhicks  staff    0 Nov 28 12:56 4.useful.txt
+-rw-r--r--   1 benjaminhicks  staff    0 Nov 28 12:56 5.useful.txts
+```
+
+The wildcard selector grabbed all the files that ended in .txt and then `mv` shunted them to the directory we made called `useful_files`.
+
+The same flags `-r` and `-rp` and `-a` all apply to `mv` just as they did to `cp`. This is also how you rename a directory.
+
+In the example above, `mv -r useful_text/ new_text/` would rename the directory to `new_text`
+
+ 

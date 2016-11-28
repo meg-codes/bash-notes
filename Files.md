@@ -133,4 +133,59 @@ The same flags `-r` and `-rp` and `-a` all apply to `mv` just as they did to `cp
 
 In the example above, `mv -r useful_text/ new_text/` would rename the directory to `new_text`
 
+## Deleting a file - `rm`
+
+### Caution
+The `rm` command does NOT come with an undo. If you delete and don't have a backup, it's gone short of using a hard disk recovery tool and hoping the deleted blocks don't get overwritten. Be careful. If you use `sudo` be very, very careful. If someone tells you to `sudo rm -rf /*`, they're playing an old prank
+involving deleting the subdirectories of the system root. Many modern Linux distros will prevent this,
+as will MacOS, but just don't.
+
+`rm`, as the caution above indicates, deletes files. Without flags, it will only delete files not directories, but it does accept the standard `*` and `{}` operators.
+
+The syntax is `rm <file or list of files>`
+
+On some systems, the `rm` command is re-aliased to `rm -i`. This is a nicety because it forces you to say yes or no to file deletions. On many, it is not so aliased and it will delete files aggressively and silently. If you're not sure what your `rm` is going to do, `rm -i` is useful to keep you from nuking files youwould really rather have.
+
+Continuing from the example above, if I wanted to get rid of all the .spam files:
+
+```
+~/junkdrawer $ls -al
+total 0
+drwxr-xr-x   15 benjaminhicks  staff   510 Nov 28 12:57 .
+drwxr-xr-x+ 131 benjaminhicks  staff  4454 Nov 28 13:00 ..
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 1.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 10.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 11.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 12.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 2.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 3.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 4.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 5.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 6.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 7.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 8.spam
+-rw-r--r--    1 benjaminhicks  staff     0 Nov 28 12:56 9.spam
+drwxr-xr-x    7 benjaminhicks  staff   238 Nov 28 12:57 useful_text
+~/junkdrawer $rm *.spam
+~/junkdrawer $ls
+useful_text
+~/junkdrawer $
+```
+
+Now, let's say I wanted to get rid of the whole junkdrawer folder. Here you'll need to use the familiar `-r` flag.
+
+```
+~/junkdrawer $cd ..
+~ $rm -r junkdrawer/
+``` 
+
+I moved up one directory using `cd ..` and then `rm -r junkdrawer/` removed the folder and all its subfolders.
+
+Some useful flags:
+
+`rm -f` (and combinable as `rm -rf`) - These delete a file (or files/directories with `-r`) and also override any prompts for confirmation, which will still be offered based on the files permissions. This is a bulldozer. Aim carefully.
+
+`rm -P` - This flag, also combinable, does a triple-overwrite of a file after deleting it, which can render it unrecoverable more quickly as a matter of security. You're not going to need this often.
+
+ 
  

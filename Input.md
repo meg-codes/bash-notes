@@ -58,7 +58,7 @@ a round-about way of saying 'toss the whole thing, I don't care'.
 
 ### Down the pipe - `|`
 
-The most useful tool you'll encounter is the `|`. This pipes the standard output of one program to another.
+The most useful tool you'll encounter is the `|`. This pipes the standard output of one program to another (`2>&1` at the end of your command will redirect `stderr` too).
 
 Why would I want to do this? An excellent example is the `find` command. Without going into its complex
 (and implementation specific) syntax, `find .` would start in your current directory and recursively list every single file (throwing errors for files you don't have permission to read).

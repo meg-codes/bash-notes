@@ -21,6 +21,22 @@ The less than newbie friendly guide to regexes for the two programs are linked h
 
 [`grep` regex checker](https://www.online-utility.org/text/grep.jsp)
 
+## Checking what you did - `history`
+
+`history` is a highly, highly useful command. It prints the contents of the hidden file `.bash__history` (usually in `~`) to the console along with a list of numbers.
+
+You can shortcut this for the previous command without typing anything by just pressing the up arrow. Rinse and repeat the command.
+
+But say you wanted to do this for something 50 back? You could hit up 50 times, or you cann call `history` and note the number. Then at a new terminal just type `!number` where number is the number of the command. It will be printed to the command line to be used again!
+
+You can also pipe history output to `grep`, which I go into more detail later, but this is an easy usage:
+
+Say I wanted to know 'When was the last time I ran a script named "manage.py"?'
+
+`history | grep manage.py` would search my user history and return any lines that had
+"manage.py" in them, matched strictly.
+
+
 ## Looking at text - `less`, `tail`, and `head`
 
 You might find yourself wanting a look at a file, but not wanting to fire up a text editor like `vim` (often aliased to `vi`)  or `nano`. You could `echo` or `cat` the file to the terminal, but you can't scroll or search that, which makes it somewhat worthless.

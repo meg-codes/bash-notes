@@ -18,3 +18,7 @@ Hopefully it can be a helpful resource, though at the moment it is primarily inc
 [command-line-bootcamp](http://rik.smith-unna.com/command_line_bootcamp/?id=nhgk0wnewbk)
 
 Both of the above let you learn and test your commandline skills.
+
+[Advanced Bash-Scripting Guide](http://www.tldp.org/LDP/abs/html/)
+
+Despite the title, this assumes you have no programming knowledge. Bash scripting will let you automate and make remarkably complex programs using command line tools.

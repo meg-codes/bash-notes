@@ -9,3 +9,12 @@ Hopefully it can be a helpful resource, though at the moment it is primarily inc
 [Copying and (Re)Moving files - cp, mv, rm](Files.md)
 
 [Input, Output, and Piping - >, \<, |](Input.md)
+
+[Utilities - less/head/tail, grep, sed](Utilities.md)
+
+## Outside links and practice
+[Codeacademy - Learn the command line](https://www.codecademy.com/learn/learn-the-command-line)
+
+[command-line-bootcamp](http://rik.smith-unna.com/command_line_bootcamp/?id=nhgk0wnewbk)
+
+Both of the above let you learn and test your commandline skills.

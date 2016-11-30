@@ -37,7 +37,7 @@ Say I wanted to know 'When was the last time I ran a script named "manage.py"?'
 "manage.py" in them, matched strictly.
 
 
-## Looking at text - `less`, `tail`, and `head`
+## Looking at text - `less`, `head`, and `tail`
 
 You might find yourself wanting a look at a file, but not wanting to fire up a text editor like `vim` (often aliased to `vi`)  or `nano`. You could `echo` or `cat` the file to the terminal, but you can't scroll or search that, which makes it somewhat worthless.
 
@@ -58,6 +58,19 @@ This will open any file, but of course a binary file (vs. HTML, XML, text docume
 `less` will take over your terminal and let you scroll up and down in the buffer. You can use `q` to quit and `:` to start command sequences. `:/regex` will let you search for a word in the file you've opened.
 
 The `man` page goes into much greater detail as to manuevering `less`. It is very handy.
+
+### `head`
+
+`head` show the first few lines of file. Use `man` if you want more. 
+
+### `tail`
+
+`tail` shows the last few lines of a file. Look at `man`, but the classic use is with the 
+`-f` flag for a log file you want to monitor. `tail -f filename` displays the file and updates when anything is appended to its end.
+
+If you want to filter the file, you can use `grep` explained below to pipe the output.
+
+`tail -f /var/log/messages | grep 'foo'` would only show appended lines with `foo` in them.
 
 ## `grep`
 

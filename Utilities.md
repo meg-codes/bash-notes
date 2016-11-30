@@ -59,6 +59,70 @@ This will open any file, but of course a binary file (vs. HTML, XML, text docume
 
 The `man` page goes into much greater detail as to manuevering `less`. It is very handy.
 
-### `grep`
+## `grep`
 
-Don't worry about the name. `grep` is amazing and it will revolutionize how you look at files. Its usage is really beyond this basic overview, so I've included some links below. 
+Don't worry [about the name](https://medium.com/@rualthanzauva/grep-was-a-private-command-of-mine-for-quite-a-while-before-i-made-it-public-ken-thompson-a40e24a5ef48#.utcb6warr). `grep` is amazing and it will revolutionize how you look at files.
+
+Its usage is really beyond this basic overview, so I've included a strong tutorial below:
+
+[Using Grep & Regular Expressions - DigitalOceans](https://www.digitalocean.com/community/tutorials/using-grep-regular-expressions-to-search-for-text-patterns-in-linux) 
+
+One thing to note is that `grep` typically includes the functionality of some old utilities called `egrep` and `fgrep`, which expand on its capacities. You'll often want to use the `-E` flag (not to be confused with `-e`).
+
+`grep` will take a regular expression and return any line in the file that matches the expression.
+
+A rough rundown on some regular expression tricks for grep without the extended functionality.
+
+`grep "foo" file` would find any line that has 'foo', in it, regardless of position.
+
+Metacharacters that flag positional info or unknown characters can help expand the functionality.
+
+For example, `grep "^FOO" file` would find every line starting with FOO. `grep "FOO$" file` would return every line that ended with FOO.
+
+You can also specify character ranges using `[]`, i.e. `[A-Z]` would match all the upper-case characters. 
+
+Metacharacters can also specify how often a pattern can repeat.
+
+`grep "(.*)" file` would mean find any character `.` (`.` is a meta character that means match anything) between `()` and then do so as often as possible `*`. Thus any text between () would create a match.
+
+(N.B. Want to make a literal `.`? `\.` "escapes" the period and treats it as literally a period.)
+
+Grep also respects a huge number of backlash special characters and expressions. There are sufficiently many of them that I suggest you look [here](https://www.gnu.org/software/grep/manual/grep.html#The-Backslash-Character-and-Special-Expressions). Some require invoking the `-E` flag.
+
+Regular expressions are an art. They also often have the same problems to solve, so googling for a regex to do a particular thing will find something.
+
+The `-E` flag lets you do even more complex things like grouping regexes, providing alternate matches, etc.
+
+`grep -E "(foo|bar)" file` would match "foo" OR "bar". Note that the parenthesis are special characters when `-E` is invoked.
+
+As noted above, python, perl, PHP, etc. all have versions of the regex, and they often linclude much more functionality and more online support for checkers.
+
+But `grep` is widely available and doesn't require extra framework in the code.
+
+## Editing streams - `sed`
+
+`sed` is a utility called a stream editor. It takes a stream of text, pulled from a file or `stdout` via `|`.
+
+What makes it fantastic is that you can use basic regexes (so no grouping, none of the special characters, unfortunately) to edit a stream.
+
+It is also very feature rich, so I commend Bruce Barnett's [introduction](http://www.grymoire.com/Unix/Sed.html) to you.
+
+The basic usage is this
+`sed <commands and regex> filename`
+
+This will perform the commands you request on the filename and w/o flags specifying otherwise output the result to the terminal. So you need to either use flags to make `sed` write the file OR use something like `>` or `|` to send the output to a file or command.
+
+`-e` passes a script with commands to `sed` on the commandline
+
+`sed -e s/foo/bar/g file` would output `file` with all instances of `foo` with `bar`.
+
+`s/` invokes substition with a regex (here the literal `foo`), and then `g` makes the replacement global throughout the line (otherwise only the first instance is replaced!).
+
+An easier example:
+
+`sed -e "1,11d" file` deletes the first 11 lines of a text.
+
+If you want to edit a file inline:
+`sed -i.bak -e "s/foo/bar/g" file` actually writes changes to the file and backups up the original to file.bak.
+
+Again, very powerful, not utterly user friendly.

@@ -7,12 +7,15 @@ The terminal window, running BASH or another shell, is essentially a stream of t
 
 `stdin` is data that's piped to a program. More on this later.
 
+`stdout` is mostly where the output of programs is returned. `echo` has the very basic premise
+that it will print its arguments to `stdout`
+
 On the terminal, you have control over where these outputs go--be that another program, a file, or nowhere at all.
 
 This is where the magic happens. But first...
 
 ## Making a dummy file - `touch`
-If you've wondered why many of my examples have empty files, that's because I created them using the `touch` command. It well, touches a file. Like the scene from E.T. but much less moving. This create an entry
+If you've wondered why many of my examples have empty files, that's because I created them using the `touch` command. It well, touches a file. Like the scene from E.T. but much less moving. This creates an entry
 in the file system and a blank (text) file.
 
 `touch <filename and path>` is pretty straightforward. You can also use Bash scripting tricks to do more
@@ -36,14 +39,31 @@ This creates the file or overwrites it if it does exist.
 
 ### `COMMAND  < file `
 
-This takes a file and pushes it to a command. Many commands take file arguments and shorthand this, but yo can always do it expressly.
+This takes a file and pushes it on stdin to a command. Many commands take file arguments and shorthand this, but you can always do it expressly if the program accepts this.
+
+For example, take this example from an automated deploy script I wrote recently:
+
+```bash
+mysql -u root <<-EOF
+DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
+DELETE FROM mysql.user WHERE User='';
+DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
+FLUSH PRIVILEGES;
+EOF
+
+```
+Don't worry about the statements in mostly all caps. Those are MySQL syntax. The bash is
+really just a few lines. `<<-EOF` creates a document in a Bash script, letting me write out
+the SQL according to its own conventions. The `<` operator passes this document to the program
+`mysql` using `<` and then I use the `-u root` flag to specify what user I want to run this
+as on mysql. (A separate root from system root, incidentally.)
 
 
 ### Complex redirects
-You can also use these commands to redirect the terminal output too. This can be useful for keeping logs
+You can also use these commands to redirect terminal output too. This can be useful for keeping logs
 or silencing a command you'd just as soon not see the output of.
 
-`1` is the number for `stdout` and `2` is the one for `stderr`. 
+`1` is the number for `stdout` and `2` is the one for `stderr`.
 
 `1>filename` redirects `stdout` to `filename`
 `2>filename` does the same thing for `stderr`
@@ -58,7 +78,7 @@ a round-about way of saying 'toss the whole thing, I don't care'.
 
 ### Down the pipe - `|`
 
-The most useful tool you'll encounter is the `|`. This pipes the standard output of one program to another (`2>&1` at the end of your command will redirect `stderr` too).
+The most useful tool you'll encounter of these is the `|`. This pipes the standard output of one program to another (`2>&1` at the end of your command will redirect `stderr` too).
 
 Why would I want to do this? An excellent example is the `find` command. Without going into its complex
 (and implementation specific) syntax, `find .` would start in your current directory and recursively list every single file (throwing errors for files you don't have permission to read).
@@ -73,9 +93,3 @@ I do a lot of work on a Roman author named Pliny. Let's say I totally forgot thi
 I'd `cd ~`, then run `find . | grep pliny`. By default, grep returns any line where it finds a match for the regular expression (long story, to be explained later) I feed it.
 
 Now, if I wanted to keep this list: `find . | grep pliny > search.txt`.
-
-
- 
-
-
-

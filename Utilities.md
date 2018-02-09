@@ -1,4 +1,4 @@
-# Utiliites for working with files
+# Utilites for working with files
 
 Listed below are an entirely non-comprehensive list of utilities you can use to do useful things with files. Many rely on a concept discussed below called a 'regular expression'. If you aren't familiar with these, I have linked some explanations of different regex flavors and implementations.
 
@@ -8,15 +8,15 @@ Others are just useful for watching processes and files.
 
 Regular expressions are a shorthand way of telling a scripting language (or really any language) or utility 'look for this match'.
 
-This can be very useful for finding a line that matches and deleting it, finding and replacing text (your word processor's find and rreplace is a much more use friendly but often less powerful version of this), etc.
+This can be very useful for finding a line that matches and deleting it, finding and replacing text (your word processor's find and replace is a much more use friendly but often less powerful version of this), etc.
 
-Many programming languages have their versions of the regex, all of which tend to look similar but have different features. If you need highly complex regex, you're probably better moving to a scripting language like Python, PHP, or Javascript--or even a data science tool like R. 
+Many programming languages have their versions of the regex, all of which tend to look similar but have different features. If you need highly complex regexes, you're probably better moving to a scripting language like Python, PHP, or Javascript--or even a data science tool like R.
 
 The two BASH tools I'll discuss that use regexes to great benefit are `grep` and `sed`.
 
 The less than newbie friendly guide to regexes for the two programs are linked here:
 [`sed` regexes](https://www.gnu.org/software/sed/manual/html_node/Regular-Expressions.html)
-[`grep` regexes](https://www.cyberciti.biz/faq/grep-regular-expressions/) 
+[`grep` regexes](https://www.cyberciti.biz/faq/grep-regular-expressions/)
 	Note: This site also explain the difference in `grep -E` and `grep -F`, which are on old systems sometimes different commands.
 
 [`grep` regex checker](https://www.online-utility.org/text/grep.jsp)
@@ -44,7 +44,7 @@ You might find yourself wanting a look at a file, but not wanting to fire up a t
 Here are some options:
 
 ### `less` isn't `more`
- 
+
 The history of this commandline utility is somewhre beyond confusing. It postdates `more`, which was a less flexible version of the pgining utility (i.e. utilities that take text and paginate it for display), but it predates the less common utility `most`. To quote the [Slackware Linux Essentials Guide](http://www.slackbook.org/html/file-commands-pagers.html): 'If `less` is more than `more`, `most` is more than `less`.
 
 If your platform has `most` installed, it's worth looking through the `man` page and learning about it. It lets you open multiple file buffers at once, among other niceties.
@@ -55,17 +55,17 @@ The syntax is simply `less <filename>`, i.e. `less myfile.html`
 
 This will open any file, but of course a binary file (vs. HTML, XML, text documents, etc.) will just be gibberish.
 
-`less` will take over your terminal and let you scroll up and down in the buffer. You can use `q` to quit and `:` to start command sequences. `:/regex` will let you search for a word in the file you've opened.
+`less` will take over your terminal and let you scroll up and down in the buffer. You can use `q` to quit and `:` to start command sequences. `:/word` will let you search for a word in the file you've opened.
 
 The `man` page goes into much greater detail as to manuevering `less`. It is very handy.
 
 ### `head`
 
-`head` show the first few lines of file. Use `man` if you want more. 
+`head` show the first few lines of file. Use `man` if you want more.
 
 ### `tail`
 
-`tail` shows the last few lines of a file. Look at `man`, but the classic use is with the 
+`tail` shows the last few lines of a file. Look at `man`, but the classic use is with the
 `-f` flag for a log file you want to monitor. `tail -f filename` displays the file and updates when anything is appended to its end.
 
 If you want to filter the file, you can use `grep` explained below to pipe the output.
@@ -78,7 +78,7 @@ Don't worry [about the name](https://medium.com/@rualthanzauva/grep-was-a-privat
 
 Its usage is really beyond this basic overview, so I've included a strong tutorial below:
 
-[Using Grep & Regular Expressions - DigitalOceans](https://www.digitalocean.com/community/tutorials/using-grep-regular-expressions-to-search-for-text-patterns-in-linux) 
+[Using Grep & Regular Expressions - DigitalOceans](https://www.digitalocean.com/community/tutorials/using-grep-regular-expressions-to-search-for-text-patterns-in-linux)
 
 One thing to note is that `grep` typically includes the functionality of some old utilities called `egrep` and `fgrep`, which expand on its capacities. You'll often want to use the `-E` flag (not to be confused with `-e`).
 
@@ -92,7 +92,7 @@ Metacharacters that flag positional info or unknown characters can help expand t
 
 For example, `grep "^FOO" file` would find every line starting with FOO. `grep "FOO$" file` would return every line that ended with FOO.
 
-You can also specify character ranges using `[]`, i.e. `[A-Z]` would match all the upper-case characters. 
+You can also specify character ranges using `[]`, i.e. `[A-Z]` would match all the upper-case characters.
 
 Metacharacters can also specify how often a pattern can repeat.
 
@@ -108,9 +108,11 @@ The `-E` flag lets you do even more complex things like grouping regexes, provid
 
 `grep -E "(foo|bar)" file` would match "foo" OR "bar". Note that the parenthesis are special characters when `-E` is invoked.
 
-As noted above, python, perl, PHP, etc. all have versions of the regex, and they often linclude much more functionality and more online support for checkers.
+As noted above, python, perl, PHP, etc. all have versions of the regex, and they often include much more functionality and more online support for checkers.
 
-But `grep` is widely available and doesn't require extra framework in the code.
+But `grep` is widely available and doesn't require extra framework in the code. MacOS has a
+different version of `grep` than most Unix/Linux distributions, so online guides may not work.
+You can use a utility like [Homebrew](https://brew.sh) to install GNU versions of it (and other utilities).
 
 ## Editing streams - `sed`
 
@@ -129,7 +131,7 @@ This will perform the commands you request on the filename and w/o flags specify
 
 `sed -e s/foo/bar/g file` would output `file` with all instances of `foo` with `bar`.
 
-`s/` invokes substition with a regex (here the literal `foo`), and then `g` makes the replacement global throughout the line (otherwise only the first instance is replaced!).
+`s/` invokes substitution with a regex (here the literal `foo`), and then `g` makes the replacement global throughout the line (otherwise only the first instance is replaced!).
 
 An easier example:
 

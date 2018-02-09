@@ -1,6 +1,6 @@
 # Command Line Cheat Sheet
 
-## What this is document and isn't 
+## What this is document and isn't
 This document is a basic guide to getting around the file system of a POSIX (Unix, Linux,
 MacOS based system). It is not comprehensive.
 
@@ -12,14 +12,48 @@ Pulling up a command line terminal varies from operating system to operating sys
 On MacOS, the Terminal app launches the command line, whereas various flavors of Linux
 will hide it in various places if launched in workstation (graphical) mode.
 
-When logging on to a server or computing cluster via an SSH client (more here), you'll
+When logging on to a server or computing cluster via an SSH client, you'll
 simply land in a terminal.
 
 Most likely the shell you'll encounter is the one whose commands are described herein,
 the Bash shell (Bourne Against SHell), a revision of the older SH. There are
 different flavors of Bash, and different Unix-based OSes all have their tics.
 
-## Always use 'man'. Always
+## What is a shell?
+A shell is an operating utility that provides some basic facility for running other programs
+and ultimately, moving text from one place to another. (One of the fundamental principles
+of a POSIX environment is that most configuration files are, in some form or another, just
+text.)
+
+You will launch programs by invoking their name. A certain class of programs are kept in
+directories that your operating system knows to look in, and they can be invoked by just their
+bare name. It's the equivalent of clicking on shortcut to an application in your Applications folder in a
+graphical interface. We can adjust that using a special setting (called a variable) in
+our environment, called `$PATH`. You do not want to start editing that until you have a good
+sense of what you're doing, as you can render it difficult to use any commands whatsoever.
+
+(Not permanently, even if you do mess up. As with most things, it is fixable.)
+
+Most commands will follow a pattern that looks something like this:
+
+```
+program_name -f --flag argument1 argument2
+```
+
+Where `-f` is what we call a short flag, i.e. a quick modification to how the program runs and
+`--flag` is its spelled-out form. (They're functionally equivalent, but you can often stack
+the shortened form together, i.e. `ls -al`).
+
+Arguments are often files. For example to echo the contents of a file to the command line, I can type:
+
+```
+cat myfile.txt
+```
+
+`myfile.txt` is the first argument of the program `cat`, which conCATenates the contents of
+of a list of files.
+
+## Always use 'man'.
 One of the most useful commands you should probably learn before even basic
 file operations is the most straightfoward -- 'man'
 
@@ -28,8 +62,8 @@ Syntax:
 ```bash
 man <command>
 ```
-It will give a printout of a particular system command's usage 
-(or really any program that has manual documentation) to the terminal window 
+It will give a printout of a particular system command's usage
+(or really any program that has manual documentation) to the terminal window
 
 A shortened version of the output of `man ls` is here:
 ```
@@ -55,34 +89,35 @@ DESCRIPTION
 ```
 
 Most entries describe the command's basic function, give a listing of its operands
-(usually prefixed by -- or -) and then what it takes as an input.
+(usually prefixed by `--` or `-``) and then what it takes as an input.
 
 So from that, we learn that `ls` lists the contents of a directory.
 
 ## Getting around the file system
 
 When you first open a terminal, you will probably be dropped off in your home directoy,
-often abbreviated by a ~. POSIX systems all use forward slashes to mark directory
+often abbreviated by a `~`. POSIX systems all use forward slashes to mark directory
 structure. (Directories are like the folders you see in a graphical interface.)
 
 For example:
 ```
-/ denotes the root directory
+/ denotes the root directory (all directories stem from this)
 /home/ marks a directory under the directory /
 /home/user marks a directory under /home
 ```
 
-Prompt for my home directory on a server called della is something like this:
+The prompt for my home directory on a server called della is something like this:
 ```
 [bhicks@della4 ~]$
-``` 
-The $ is just shell speak for 'Ready to start a new command'
+```
+The $ is just shell speak for 'Ready to start a new command' and 'you are not the root user'
+(the root or a superuser can modify system or other restricted files)
 
 Let's look around, shall we? If you see a command here, run its 'man' to get a
 full listing. It's habit building. In a good way.
 
 ### Looking around - `ls` and `pwd`
-`ls` gives you the structure of a directory and its files. 
+`ls` gives you the structure of a directory and its files.
 
 Without any arguments, it will return any non-hidden files in your current directory.
 
@@ -125,14 +160,15 @@ drwx------   2 bhicks cses     24 Sep 27 14:40 .ssh
 -rw-r--r--   1 bhicks cses    378 Nov  7 14:58 submit.cmd
 drwxr-xr-x   2 bhicks cses     31 Oct 27 11:17 .vim
 -rw-------   1 bhicks cses   5282 Nov  7 14:59 .viminfo
--rw-------   1 bhicks cses     50 Sep  6 09:02 .Xauthority 
-``` 
+-rw-------   1 bhicks cses     50 Sep  6 09:02 .Xauthority
+```
 
 This looks like a lot of obtuse information, but it tells me 1) all the files, including
-'hidden' dotted files like my .bashrc that helps set initial variables for a Bash session 2) shows size in B (add -alh to get a more useful set of values there) and 3) the 
-permissions of each file, but that's a topic for later.
+'hidden' dotted files like my .bashrc that helps set initial variables for a Bash session 2) shows size in B (add -alh to get a more useful set of values there) and 3) the
+permissions of each file, but that's a topic for later. You'll also note that `-a` is the
+flag for 'alphabetical'.
 
-I still don't know what the absolute file path for the directory is. In this case, 
+I still don't know what the absolute file path for the directory is. In this case,
 `pwd` is the ticket. It prints the working directory to the console.
 
 ```
@@ -172,7 +208,7 @@ Let's say I'm in my home directory and want to make a folder and a folder beneat
 
 Great! The folders `~/work` and `~/work/Mon` now both exist.
 
-So, you might think, 'I bet I can just do `mkdir work/Mon`!` to save a step. But you'll get this if you'restarting from scratch.
+So, you might think, 'I bet I can just do `mkdir work/Mon`!` to save a step. But you'll get this if you're starting from scratch.
 
 ```
 ~ $mkdir work/Mon
@@ -182,9 +218,3 @@ mkdir: work: No such file or directory
 Sounds like a Monday. In any case, `mkdir` can't make the subdirectory because the directory doesn't exist.  However: `mkdir -p work/Mon` works like a charm. The `-p` flag creates subdirectories recursively.
 
 You can combine this with the `{}` braces selector to do some neat tricks. `mkdir -p work/{Mon,Tues,Wed,Thurs,Fri}` will create `work/` and then the named subdirectories below, all in one shot.
-
- 
-
-
- 
-

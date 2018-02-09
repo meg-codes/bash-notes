@@ -1,4 +1,4 @@
-# Utilites for working with files
+# Utilities for working with files
 
 Listed below are an entirely non-comprehensive list of utilities you can use to do useful things with files. Many rely on a concept discussed below called a 'regular expression'. If you aren't familiar with these, I have linked some explanations of different regex flavors and implementations.
 

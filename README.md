@@ -8,7 +8,7 @@ Hopefully it can be a helpful resource, though at the moment it is primarily inc
 
 [Copying and (Re)Moving files - cp, mv, rm](Files.md)
 
-[Input, Output, and Piping - >, \<, |](Input.md)
+[Input, Output, and Piping](Input.md)
 
 [Utilities - less/head/tail, grep, sed](Utilities.md)
 

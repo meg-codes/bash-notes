@@ -23,6 +23,11 @@ Both of the above let you learn and test your commandline skills.
 
 Despite the title, this assumes you have no programming knowledge. Bash scripting will let you automate and make remarkably complex programs using command line tools.
 
+[Bash Cookbook](https://catalog.princeton.edu/catalog/10575576)
+
+O'Reilly's excellent reference with examples of using Bash to carry out day to day tasks with
+sample code. Good for when you ask yourself "How would I...?"
+
 ## Virtual Machine Resources
 If you want to run Linux on a Windows platform that doesn't support WSL (anything pre-Win10), one option is to create a virtual machine with its own filesystem, etc. that runs on your physical machine as its host.
 
@@ -31,5 +36,3 @@ One of the easier, lightweight alternatives is [Vagrant](https://www.vagrantup.c
 Note: You will need Oracle's free [VirtualBox](https://www.virtualbox.org/wiki/Downloads) to facilitate the creation of the VMs for Vagrant.
 
 This method can also be used on MacOS or Linux if you want to play with different distributions.
-
-

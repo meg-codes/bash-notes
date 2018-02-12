@@ -50,7 +50,7 @@ Arguments are often files. For example to echo the contents of a file to the com
 cat myfile.txt
 ```
 
-`myfile.txt` is the first argument of the program `cat`, which conCATenates the contents of
+`myfile.txt` is the first argument of the program `cat`, which conCATenates the contents
 of a list of files.
 
 ## Always use 'man'.
